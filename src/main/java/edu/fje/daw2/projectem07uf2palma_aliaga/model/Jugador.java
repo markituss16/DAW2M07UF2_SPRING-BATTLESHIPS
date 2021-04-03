@@ -1,4 +1,4 @@
-package edu.fje.daw.projectem07uf2aliagapalma.model;
+package edu.fje.daw2.projectem07uf2palma_aliaga.model;
 
 import javax.persistence.*;
 

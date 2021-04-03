@@ -1,6 +1,6 @@
-package edu.fje.daw.projectem07uf2aliagapalma.controller;
+package edu.fje.daw2.projectem07uf2palma_aliaga.controller;
 
-import edu.fje.daw.projectem07uf2aliagapalma.controller.JugadorController;
+import edu.fje.daw2.projectem07uf2palma_aliaga.controller.JugadorController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
