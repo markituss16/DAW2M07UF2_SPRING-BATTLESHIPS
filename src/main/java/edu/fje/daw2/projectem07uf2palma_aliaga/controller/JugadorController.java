@@ -17,7 +17,7 @@ public class JugadorController {
     Set<Jugador> jugadors = new HashSet<>();
 
     @PostMapping("/afegirJugador")
-    public String afegirAlumne(@RequestParam String usuario,
+    public String afegirJugador(@RequestParam String usuario,
                                @RequestParam String contrasena,
                                Model model){
         return "hola";

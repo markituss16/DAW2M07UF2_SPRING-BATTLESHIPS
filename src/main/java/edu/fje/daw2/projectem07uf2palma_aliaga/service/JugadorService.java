@@ -19,14 +19,15 @@ public class JugadorService {
         return Jugadors;
     }
     //eliminar jugador
-    public void deleteById(String JugadorUsername) {
+    public void deleteById(Long JugadorUsername) {
         ju.deleteById(JugadorUsername);
     }
 
-    //
-    public void afegirUsuari(String username, String contrasena){
+    //afegir jugadors
+    public void afegirJugador(String username, String contrasena){
         var p1 = new Jugador(username, contrasena);
         ju.save(p1);
     }
+    
 
 }

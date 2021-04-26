@@ -43,5 +43,5 @@ public class Jugador implements Serializable {
     public void setPuntuacio(int puntuacio) {
         this.puntuacio = puntuacio;
     }
-    
+    //hgiygyufuf
 }
