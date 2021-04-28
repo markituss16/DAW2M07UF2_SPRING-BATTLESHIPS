@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>inicio</title>
+    <script>window.onload=function(){
+        if(sessionStorage.getItem('jugador')){
+            console.log("Ja existeix una sessio");
+        }else{
+            var jugadortemp=document.getElementById('nomJu').innerText;
+            sessionStorage.setItem('jugador',jugadortemp);
+        }
+    };
+    </script>
+</head>
+<body>
+<p id="nomJu" th:text="${nomJugador}"></p>
+
+</body>
+</html>

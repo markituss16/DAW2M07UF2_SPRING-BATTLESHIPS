@@ -14,25 +14,23 @@
         <article class="card-body mx-auto" style="max-width: 400px;">
             <h4 class="card-title mt-3 text-center">Create Account</h4>
             <p class="text-center">Get started with your free account</p>
-            <form>
+            <form method="post" action="/afegirJugador">
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-user"></i> </span>
                     </div>
-                    <input name="" class="form-control" placeholder="Full name" type="text">
+                    <input name="usuario" class="form-control" placeholder="Username" type="text">
                 </div> <!-- form-group// -->
                 <div class="form-group input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
                     </div>
-                    <input class="form-control" placeholder="Create password" type="password">
+                    <input class="form-control" name="contrasena" placeholder="Create password" type="password">
                 </div> <!-- form-group// -->
                 <!-- form-group// -->
-                <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-block"> Create Account  </button>
-                </div> <!-- form-group// -->
-                <p class="text-center">Have an account? <a href="/">Log In</a> </p>
             </form>
+            <p class="text-center">Have an account? <a href="/">Log In</a> </p>
         </article>
     </div> <!-- card.// -->
 

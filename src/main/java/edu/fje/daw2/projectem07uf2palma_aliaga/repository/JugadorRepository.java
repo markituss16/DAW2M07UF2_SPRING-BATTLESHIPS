@@ -10,4 +10,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface JugadorRepository extends CrudRepository<Jugador, Long>{
+    Jugador findByUsuarioAndContrasena(String usuario,String contrasena);
 }

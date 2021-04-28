@@ -7,9 +7,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Service
 public class JugadorService {
+    @Autowired
     private  JugadorRepository ju;
+    private Jugador resultat;
+
 
     //llistar jugadors
     public List<Jugador> findAll() {
@@ -28,6 +31,12 @@ public class JugadorService {
         var p1 = new Jugador(username, contrasena);
         ju.save(p1);
     }
-    
+    //login user
+    public String loginJugador(String username, String contrasena){
+
+        var resultat=ju.findByUsuarioAndContrasena(username,contrasena);
+        if(resultat.getUsuario().equals("")) return "0";
+        else return resultat.getUsuario();
+    }
 
 }
