@@ -9,7 +9,6 @@ public class Jugador implements Serializable {
     @Id String usuario;
     @Column(length = 25)
     private String contrasena;
-    private int puntuacio=0;
 
     //constructor
     public Jugador() {}
@@ -36,12 +35,4 @@ public class Jugador implements Serializable {
         this.contrasena = contrasena;
     }
 
-    public int getPuntuacio() {
-        return puntuacio;
-    }
-
-    public void setPuntuacio(int puntuacio) {
-        this.puntuacio = puntuacio;
-    }
-    //hgiygyufuf
 }
