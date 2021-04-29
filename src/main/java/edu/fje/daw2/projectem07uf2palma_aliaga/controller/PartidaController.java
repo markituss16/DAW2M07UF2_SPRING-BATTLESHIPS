@@ -56,7 +56,7 @@ public class PartidaController {
 
     @RequestMapping(value="/posarPosicions", method = RequestMethod.POST)
     public String posarPosicions(@RequestParam int codiPartida,
-                                 @RequestParam String nomJugador2,
+                                 @RequestParam String nomJugador,
                                  @RequestParam String b1p1,
                                  @RequestParam String b2p1,
                                  @RequestParam String b2p2,
@@ -99,18 +99,101 @@ public class PartidaController {
             list1.add(b5p3);
             list1.add(b5p4);
             list1.add(b5p5);
-
-            if(partidatemp.getPosicionsJ1().size()==0) resultat.setPosicionsJ1(list1);
-            else resultat.setPosicionsJ2(list1);
+            System.out.println(list1);
+            if(partidatemp.getPosicionsJ1().size()==0) partidatemp.setPosicionsJ1(list1);
+            else partidatemp.setPosicionsJ2(list1);
             repositoriPartida.save(partidatemp);
 
-            model.addAttribute("lerrors", resultat.getPosicionsErrorsJ1());
-            model.addAttribute("lacerts", resultat.getPosicionsAcertadesJ1());
-            model.addAttribute("nomJugador", nomJugador2);
+            model.addAttribute("lerrors", partidatemp.getPosicionsErrorsJ1());
+            model.addAttribute("lacerts", partidatemp.getPosicionsAcertadesJ1());
+            model.addAttribute("nomJugador", nomJugador);
             model.addAttribute("codiPartida", codiPartida);
             return "partida";
         }
     }
+
+
+    @RequestMapping(value="/polsarPosicio", method = RequestMethod.POST)
+    public String polsarPosicio(@RequestParam int codiPartida,
+                               @RequestParam String nomJugador,
+                                @RequestParam String posicio,
+                               Model model){
+
+        var resultat=repositoriPartida.findByCodiPartida(codiPartida);
+
+
+        if(resultat.getNomJugador1().equals("")) return "inicio";
+        else{
+            Partida partidatemp=new Partida(resultat.get_id(),resultat.getCodiPartida(),resultat.getNomJugador1(),resultat.getNomJugador2(),resultat.getPosicionsJ1(),
+                    resultat.getPosicionsJ2(),resultat.getPosicionsAcertadesJ1(),resultat.getPosicionsAcertadesJ2(),resultat.getPosicionsErrorsJ1(),
+                    resultat.getPosicionsErrorsJ2(),resultat.isAcabada());
+
+            if(partidatemp.getNomJugador1().equals(nomJugador)){
+                
+                int trobat=0;
+                List <String> listtemp=partidatemp.getPosicionsAcertadesJ1();
+                List <String> listtempe=partidatemp.getPosicionsErrorsJ1();
+                for(String posicio2 : partidatemp.getPosicionsJ2()) {
+
+                    if(posicio2.equals(posicio)){
+                        System.out.println();
+                        trobat=1;
+                        listtemp.add(posicio);
+
+                        partidatemp.setPosicionsAcertadesJ1(listtemp);
+                        posicio2=null;}
+                };
+                if(trobat==0){
+                    listtempe.add(posicio);
+                    partidatemp.setPosicionsErrorsJ1(listtempe);
+                }else{
+                    int in=partidatemp.getPosicionsJ2().indexOf(posicio);
+                    List ltreu=partidatemp.getPosicionsJ2();
+                    System.out.println(in);
+                    ltreu.remove(in);
+                    partidatemp.setPosicionsJ2(ltreu);
+                }
+                model.addAttribute("lerrors", partidatemp.getPosicionsErrorsJ1());
+                model.addAttribute("lacerts", partidatemp.getPosicionsAcertadesJ1());
+            }else{
+                int trobat=0;
+                List <String> listtemp=partidatemp.getPosicionsAcertadesJ2();
+                List <String> listtempe=partidatemp.getPosicionsErrorsJ2();
+                for(String posicio1 : partidatemp.getPosicionsJ1()) {
+
+                    if(posicio1.equals(posicio)){
+                        trobat=1;
+                        listtemp.add(posicio);
+                        partidatemp.setPosicionsAcertadesJ2(listtemp);
+                        posicio1=null;}
+                };
+                if(trobat==0){
+                    listtempe.add(posicio);
+                    partidatemp.setPosicionsErrorsJ2(listtempe);
+                }else {
+                    int in=partidatemp.getPosicionsJ1().indexOf(posicio);
+                    List ltreu=partidatemp.getPosicionsJ1();
+                    System.out.println(in);
+                    ltreu.remove(in);
+                    partidatemp.setPosicionsJ1(ltreu);
+                }
+                trobat=0;
+                model.addAttribute("lerrors", partidatemp.getPosicionsErrorsJ2());
+                model.addAttribute("lacerts", partidatemp.getPosicionsAcertadesJ2());
+            };
+
+            repositoriPartida.save(partidatemp);
+
+            model.addAttribute("codiPartida", codiPartida);
+            model.addAttribute("nomJugador", nomJugador);
+
+            return "partida";
+        }
+
+    }
+
+
+
    /* @RequestMapping(value="/esborrarPartida", method = RequestMethod.GET)
     String esborrarPartida(@SessionAttribute("partides") List<Partida> partides,
                           @RequestParam (defaultValue = "") int codiPartida){

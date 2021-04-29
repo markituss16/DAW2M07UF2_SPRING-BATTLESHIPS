@@ -1,14 +1,19 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <title>Partida</title>
 </head>
-<body>
+<body style="background: url('https://wallpaperaccess.com/full/1486772.jpg')">
     <form class="form-inline" method="post" action="/polsarPosicio">
         <div class="form-group mb-2">
             <label for="codiPartida2" class="sr-only">Codi Partida:</label>
-            <input type="text" class="form-control" id="codiPartida2" name="codiPartida" placeholder="codi" readonly>
+            <input type="text" class="form-control" id="codiPartida2" name="codiPartida" th:value="*{codiPartida}" readonly>
             <label for="usuario" class="sr-only">Jugador:</label>
             <input type="text" id="usuario" name="nomJugador" readonly class="form-control-plaintext" th:value="*{nomJugador}">
             <label for="posicio" class="sr-only">Posició:</label>
@@ -16,9 +21,11 @@
         </div>
     <button type="submit" class="btn btn-primary mb-2">Enviar</button>
 </form>
+    Llista Errors
     <ul class="list-group" th:each="error: ${lerrors}">
         <li class="list-group-item" th:text="${error}"/>
     </ul>
+    Llista d'acerts
     <ul class="list-group" th:each="acert: ${lacerts}">
         <li class="list-group-item" th:text="${acert}"/>
     </ul>
