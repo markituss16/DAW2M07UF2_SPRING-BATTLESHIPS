@@ -1,7 +1,6 @@
 package edu.fje.daw2.projectem07uf2palma_aliaga.controller;
 
-import edu.fje.daw2.projectem07uf2palma_aliaga.PartidaRepositori;
-import edu.fje.daw2.projectem07uf2palma_aliaga.controller.JugadorController;
+import edu.fje.daw2.projectem07uf2palma_aliaga.repository.PartidaRepositori;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,29 +8,38 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import edu.fje.daw2.projectem07uf2palma_aliaga.model.Partida;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Controller
 @SessionAttributes("partides")
 public class PartidaController {
     @Autowired
-    private PartidaRepositori repositori;
+    private PartidaRepositori repositoriPartida;
 
     @RequestMapping(value="/crearPartida", method = RequestMethod.POST)
-    String crearPartida(@SessionAttribute("partides") List<Partida> partides,
-                            @RequestParam(defaultValue = "") int codiPartida,
+    String crearPartida(@RequestParam(defaultValue = "") int codiPartida,
                             @RequestParam(defaultValue = "") String nomJugador1,
                             ModelMap model) {
         Partida p = new Partida(codiPartida,nomJugador1);
-        repositori.save(p);
+        repositoriPartida.save(p);
 
-        if(!model.containsAttribute("partides")) {
-            model.addAttribute("partides", partides);
-        }
-        partides.add(p);
+        model.addAttribute("codiPartida", codiPartida);
+        model.addAttribute("nomJugador1", nomJugador1);
 
         return("llistaPartides"); //añadir nuevo archivo
+    }
+
+    @RequestMapping(value="/accesPartida", method = RequestMethod.POST)
+    public String accesPartida(@RequestParam int codiPartida,
+                               @RequestParam String nomJugador1,
+                               Model model){
+
+        var resultat=repositoriPartida.findByCodiPartida(codiPartida);
+        if(resultat.equals("")) return "inicio";
+        else{
+            model.addAttribute("codiPartida", resultat);
+            model.addAttribute("nomJugador1", nomJugador1);
+            return "accesPartida";
+        }
+
     }
 
    /* @RequestMapping(value="/esborrarPartida", method = RequestMethod.GET)
