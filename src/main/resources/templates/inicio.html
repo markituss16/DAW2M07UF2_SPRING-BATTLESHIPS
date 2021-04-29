@@ -19,7 +19,7 @@
 </head>
 <body style="background: url('https://wallpaperaccess.com/full/1486772.jpg')" >
 <p id="nomJu" th:text="${nomJugador}"></p>
-<form class="form-inline">
+<form class="form-inline" method="post" action="/crearPartida">
     <h1>Crear partida</h1>
     <div class="form-group mx-sm-3 mb-2">
         <label for="codiPartida" class="sr-only">Codi Partida:</label>
@@ -30,7 +30,7 @@
     <button type="submit" class="btn btn-primary mb-2">Confirm identity</button>
 </form>
 <h1>Unirse partida</h1>
-<form class="form-inline">
+<form class="form-inline" method="post" action="/unirPartida">
     <div class="form-group mb-2">
         <label for="codiPartida2" class="sr-only">Codi Partida:</label>
         <input type="text" class="form-control" id="codiPartida2" name="codiPartida" placeholder="Jugador">
