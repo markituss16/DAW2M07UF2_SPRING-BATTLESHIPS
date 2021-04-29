@@ -24,19 +24,19 @@ public class PartidaController {
         model.addAttribute("codiPartida", codiPartida);
         model.addAttribute("nomJugador", nomJugador1);
 
-        return("llistaPartides"); //añadir nuevo archivo
+        return("accesPartida"); //añadir nuevo archivo
     }
 
-    @RequestMapping(value="/accesPartida", method = RequestMethod.POST)
+    @RequestMapping(value="/unirPartida", method = RequestMethod.POST)
     public String accesPartida(@RequestParam int codiPartida,
-                               @RequestParam String nomJugador1,
+                               @RequestParam String nomJugador2,
                                Model model){
 
         var resultat=repositoriPartida.findByCodiPartida(codiPartida);
-        if(resultat.equals("")) return "inicio";
+        if(resultat.getNomJugador1().equals("")) return "inicio";
         else{
-            model.addAttribute("codiPartida", resultat);
-            model.addAttribute("nomJugador", nomJugador1);
+            model.addAttribute("codiPartida", codiPartida);
+            model.addAttribute("nomJugador", nomJugador2);
             return "accesPartida";
         }
 
