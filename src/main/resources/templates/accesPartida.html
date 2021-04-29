@@ -21,6 +21,10 @@
 <p id="codiPartida" th:text="${codiPartida}"></p>
 <form>
     <div class="form-row">
+        <label for="usuario" class="sr-only">Jugador:</label>
+        <input type="text" id="usuario" name="nomJugador" readonly class="form-control-plaintext" th:value="*{nomJugador}">
+        <label for="codiPartida2" class="sr-only">Codi Partida:</label>
+        <input type="text" id="codiPartida2" name="codiPartida" readonly class="form-control-plaintext" th:value="*{codiPartida}">
         <div class="col">
             <h1>BARCO NIVEL1</h1>
             <input type="text" class="form-control" name="b1p1"placeholder="example (A1)">

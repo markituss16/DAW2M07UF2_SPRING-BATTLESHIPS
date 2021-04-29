@@ -22,7 +22,7 @@ public class PartidaController {
         repositoriPartida.save(p);
 
         model.addAttribute("codiPartida", codiPartida);
-        model.addAttribute("nomJugador1", nomJugador1);
+        model.addAttribute("nomJugador", nomJugador1);
 
         return("llistaPartides"); //añadir nuevo archivo
     }
@@ -36,7 +36,7 @@ public class PartidaController {
         if(resultat.equals("")) return "inicio";
         else{
             model.addAttribute("codiPartida", resultat);
-            model.addAttribute("nomJugador1", nomJugador1);
+            model.addAttribute("nomJugador", nomJugador1);
             return "accesPartida";
         }
 
