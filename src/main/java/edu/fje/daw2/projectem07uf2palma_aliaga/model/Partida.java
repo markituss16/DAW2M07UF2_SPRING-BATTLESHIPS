@@ -11,6 +11,8 @@ import java.util.List;
 
 @Document(collection = "partida")
 public class Partida implements Serializable {
+    @Id
+    private int _id;
     private int codiPartida;
     private String nomJugador1;
     private String nomJugador2="";
@@ -22,8 +24,10 @@ public class Partida implements Serializable {
     private List<String> posicionsErrorsJ2 = new ArrayList<>();
     private boolean acabada=false;
 
+    public Partida(){}
 
-    public Partida(int codiPartida, String nomJugador1, String nomJugador2, List<String> posicionsJ1, List<String> posicionsJ2, List<String> posicionsAcertadesJ1, List<String> posicionsAcertadesJ2, List<String> posicionsErrorsJ1, List<String> posicionsErrorsJ2, boolean acabada) {
+    public Partida(int _id,int codiPartida, String nomJugador1, String nomJugador2, List<String> posicionsJ1, List<String> posicionsJ2, List<String> posicionsAcertadesJ1, List<String> posicionsAcertadesJ2, List<String> posicionsErrorsJ1, List<String> posicionsErrorsJ2, boolean acabada) {
+        this._id=_id;
         this.codiPartida = codiPartida;
         this.nomJugador1 = nomJugador1;
         this.nomJugador2 = nomJugador2;
@@ -36,7 +40,8 @@ public class Partida implements Serializable {
         this.acabada = acabada;
     }
 
-    public Partida(int codiPartida, String nomJugador1) {
+    public Partida(int _id,int codiPartida, String nomJugador1) {
+        this._id=_id;
         this.codiPartida = codiPartida;
         this.nomJugador1 = nomJugador1;
     }
@@ -120,4 +125,14 @@ public class Partida implements Serializable {
     public void setAcabada(boolean acabada) {
         this.acabada = acabada;
     }
+
+
+    public int get_id() {
+        return _id;
+    }
+
+    public void set_id(int _id) {
+        this._id = _id;
+    }
 }
+

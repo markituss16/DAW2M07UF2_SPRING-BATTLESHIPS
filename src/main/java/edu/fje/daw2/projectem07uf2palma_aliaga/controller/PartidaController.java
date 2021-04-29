@@ -18,7 +18,7 @@ public class PartidaController {
     String crearPartida(@RequestParam(defaultValue = "") int codiPartida,
                             @RequestParam(defaultValue = "") String nomJugador1,
                             ModelMap model) {
-        Partida p = new Partida(codiPartida,nomJugador1);
+        Partida p = new Partida(codiPartida,codiPartida,nomJugador1);
         repositoriPartida.save(p);
 
         model.addAttribute("codiPartida", codiPartida);
@@ -33,9 +33,11 @@ public class PartidaController {
                                Model model){
 
         var resultat=repositoriPartida.findByCodiPartida(codiPartida);
+
+
         if(resultat.getNomJugador1().equals("")) return "inicio";
         else{
-            Partida partidatemp=new Partida(resultat.getCodiPartida(),resultat.getNomJugador1(),resultat.getNomJugador2(),resultat.getPosicionsJ1(),
+            Partida partidatemp=new Partida(resultat.get_id(),resultat.getCodiPartida(),resultat.getNomJugador1(),resultat.getNomJugador2(),resultat.getPosicionsJ1(),
                     resultat.getPosicionsJ2(),resultat.getPosicionsAcertadesJ1(),resultat.getPosicionsAcertadesJ2(),resultat.getPosicionsErrorsJ1(),
                     resultat.getPosicionsErrorsJ2(),resultat.isAcabada());
             partidatemp.setNomJugador2(nomJugador2);
