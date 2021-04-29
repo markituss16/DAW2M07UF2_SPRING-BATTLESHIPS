@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <title>inicio</title>
     <script>window.onload=function(){
@@ -13,8 +17,27 @@
     };
     </script>
 </head>
-<body>
+<body style="background: url('https://wallpaperaccess.com/full/1486772.jpg')" >
 <p id="nomJu" th:text="${nomJugador}"></p>
-
+<form class="form-inline">
+    <h1>Crear partida</h1>
+    <div class="form-group mx-sm-3 mb-2">
+        <label for="codiPartida" class="sr-only">Codi Partida:</label>
+        <input type="text" class="form-control" id="codiPartida" name="codiPartida" placeholder="Jugador">
+        <label for="usuario2" class="sr-only">Jugador:</label>
+        <input type="text" id="usuario2" name="nomJugador1" readonly class="form-control-plaintext" th:value="*{nomJugador}">
+    </div>
+    <button type="submit" class="btn btn-primary mb-2">Confirm identity</button>
+</form>
+<h1>Unirse partida</h1>
+<form class="form-inline">
+    <div class="form-group mb-2">
+        <label for="codiPartida2" class="sr-only">Codi Partida:</label>
+        <input type="text" class="form-control" id="codiPartida2" name="codiPartida" placeholder="Jugador">
+        <label for="usuario" class="sr-only">Jugador:</label>
+        <input type="text" id="usuario" name="nomJugador2" readonly class="form-control-plaintext" th:value="*{nomJugador}">
+    </div>
+    <button type="submit" class="btn btn-primary mb-2">Confirm identity</button>
+</form>
 </body>
 </html>

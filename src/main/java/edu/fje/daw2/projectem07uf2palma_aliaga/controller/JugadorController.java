@@ -24,7 +24,7 @@ public class JugadorController {
     public void afegirJugador(@RequestParam String usuario,
                                @RequestParam String contrasena,
                                Model model){
-        System.out.println("hollla");
+
 
         serveijugador.afegirJugador(usuario,contrasena);
     }
