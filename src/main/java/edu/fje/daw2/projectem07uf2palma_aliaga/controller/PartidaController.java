@@ -129,7 +129,10 @@ public class PartidaController {
                     resultat.getPosicionsErrorsJ2(),resultat.isAcabada());
 
             if(partidatemp.getNomJugador1().equals(nomJugador)){
-                
+                if(partidatemp.getPosicionsJ2().size()==0){
+                    repositoriPartida.delete(partidatemp);
+                    return "/";
+                }
                 int trobat=0;
                 List <String> listtemp=partidatemp.getPosicionsAcertadesJ1();
                 List <String> listtempe=partidatemp.getPosicionsErrorsJ1();
@@ -156,6 +159,10 @@ public class PartidaController {
                 model.addAttribute("lerrors", partidatemp.getPosicionsErrorsJ1());
                 model.addAttribute("lacerts", partidatemp.getPosicionsAcertadesJ1());
             }else{
+                if(partidatemp.getPosicionsJ1().size()==0){
+                    repositoriPartida.delete(partidatemp);
+                    return "/";
+                }
                 int trobat=0;
                 List <String> listtemp=partidatemp.getPosicionsAcertadesJ2();
                 List <String> listtempe=partidatemp.getPosicionsErrorsJ2();
