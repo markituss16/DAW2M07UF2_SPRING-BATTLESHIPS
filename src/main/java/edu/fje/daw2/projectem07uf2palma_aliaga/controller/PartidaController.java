@@ -35,6 +35,13 @@ public class PartidaController {
         var resultat=repositoriPartida.findByCodiPartida(codiPartida);
         if(resultat.getNomJugador1().equals("")) return "inicio";
         else{
+            Partida partidatemp=new Partida(resultat.getCodiPartida(),resultat.getNomJugador1(),resultat.getNomJugador2(),resultat.getPosicionsJ1(),
+                    resultat.getPosicionsJ2(),resultat.getPosicionsAcertadesJ1(),resultat.getPosicionsAcertadesJ2(),resultat.getPosicionsErrorsJ1(),
+                    resultat.getPosicionsErrorsJ2(),resultat.isAcabada());
+            partidatemp.setNomJugador2(nomJugador2);
+
+            repositoriPartida.save(partidatemp);
+
             model.addAttribute("codiPartida", codiPartida);
             model.addAttribute("nomJugador", nomJugador2);
             return "accesPartida";

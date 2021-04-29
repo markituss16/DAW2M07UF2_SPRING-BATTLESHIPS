@@ -2,6 +2,9 @@ package edu.fje.daw2.projectem07uf2palma_aliaga.model;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,14 +13,28 @@ import java.util.List;
 public class Partida implements Serializable {
     private int codiPartida;
     private String nomJugador1;
-    private String nomJugador2;
+    private String nomJugador2="";
     private List<String> posicionsJ1 = new ArrayList<>();
     private List<String> posicionsJ2 = new ArrayList<>();
     private List<String> posicionsAcertadesJ1 = new ArrayList<>();
     private List<String> posicionsAcertadesJ2 = new ArrayList<>();
     private List<String> posicionsErrorsJ1 = new ArrayList<>();
     private List<String> posicionsErrorsJ2 = new ArrayList<>();
-    private boolean acabada;
+    private boolean acabada=false;
+
+
+    public Partida(int codiPartida, String nomJugador1, String nomJugador2, List<String> posicionsJ1, List<String> posicionsJ2, List<String> posicionsAcertadesJ1, List<String> posicionsAcertadesJ2, List<String> posicionsErrorsJ1, List<String> posicionsErrorsJ2, boolean acabada) {
+        this.codiPartida = codiPartida;
+        this.nomJugador1 = nomJugador1;
+        this.nomJugador2 = nomJugador2;
+        this.posicionsJ1 = posicionsJ1;
+        this.posicionsJ2 = posicionsJ2;
+        this.posicionsAcertadesJ1 = posicionsAcertadesJ1;
+        this.posicionsAcertadesJ2 = posicionsAcertadesJ2;
+        this.posicionsErrorsJ1 = posicionsErrorsJ1;
+        this.posicionsErrorsJ2 = posicionsErrorsJ2;
+        this.acabada = acabada;
+    }
 
     public Partida(int codiPartida, String nomJugador1) {
         this.codiPartida = codiPartida;

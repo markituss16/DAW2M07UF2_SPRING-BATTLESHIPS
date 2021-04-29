@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PartidaRepositori extends MongoRepository<Partida, String> {
     Partida findByCodiPartida(int codiPartida);
+
 }
