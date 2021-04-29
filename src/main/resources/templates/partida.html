@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">>
+<head>
+    <meta charset="UTF-8">
+    <title>Partida</title>
+</head>
+<body>
+    <form class="form-inline" method="post" action="/polsarPosicio">
+        <div class="form-group mb-2">
+            <label for="codiPartida2" class="sr-only">Codi Partida:</label>
+            <input type="text" class="form-control" id="codiPartida2" name="codiPartida" placeholder="codi" readonly>
+            <label for="usuario" class="sr-only">Jugador:</label>
+            <input type="text" id="usuario" name="nomJugador" readonly class="form-control-plaintext" th:value="*{nomJugador}">
+            <label for="posicio" class="sr-only">Posició:</label>
+            <input type="text" class="form-control" id="posicio" name="posicio" placeholder="Posicio">
+        </div>
+    <button type="submit" class="btn btn-primary mb-2">Enviar</button>
+</form>
+    <ul class="list-group" th:each="error: ${lerrors}">
+        <li class="list-group-item" th:text="${error}"/>
+    </ul>
+    <ul class="list-group" th:each="acert: ${lacerts}">
+        <li class="list-group-item" th:text="${acert}"/>
+    </ul>
+</body>
+</html>
