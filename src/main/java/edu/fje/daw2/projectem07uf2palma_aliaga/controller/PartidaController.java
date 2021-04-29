@@ -18,22 +18,12 @@ public class PartidaController {
     @Autowired
     private PartidaRepositori repositori;
 
-    @ModelAttribute("partides")
-    public List<Partida> mostrarPartides() {
-        List<Partida> partides = new ArrayList<>();
-        for (Partida p : repositori.findAll()) {
-            partides.add(p);
-        }
-        return partides;
-    }
-
-    @RequestMapping(value="/desarPartida", method = RequestMethod.POST)
-    String desarPartida(@SessionAttribute("partides") List<Partida> partides,
-                            @RequestParam(defaultValue = "") String id,
-                            @RequestParam(defaultValue = "") String jugador1,
-                            @RequestParam(defaultValue = "") String jugador2,
+    @RequestMapping(value="/crearPartida", method = RequestMethod.POST)
+    String crearPartida(@SessionAttribute("partides") List<Partida> partides,
+                            @RequestParam(defaultValue = "") int codiPartida,
+                            @RequestParam(defaultValue = "") String nomJugador1,
                             ModelMap model) {
-        Partida p = new Partida(id,jugador1,jugador2);
+        Partida p = new Partida(codiPartida,nomJugador1);
         repositori.save(p);
 
         if(!model.containsAttribute("partides")) {
@@ -41,18 +31,18 @@ public class PartidaController {
         }
         partides.add(p);
 
-        return("llistaPartides");
+        return("llistaPartides"); //añadir nuevo archivo
     }
 
-    @RequestMapping(value="/esborrarPartida", method = RequestMethod.GET)
+   /* @RequestMapping(value="/esborrarPartida", method = RequestMethod.GET)
     String esborrarPartida(@SessionAttribute("partides") List<Partida> partides,
-                          @RequestParam (defaultValue = "") String id){
-        System.out.println(id);
+                          @RequestParam (defaultValue = "") int codiPartida){
+        System.out.println(codiPartida);
         repositori.deleteById(id);
         Partida pa = new Partida(id);
         pa.setId(id);
         partides.remove(pa);
 
         return("llistaPartides");
-    }
+    }*/
 }
