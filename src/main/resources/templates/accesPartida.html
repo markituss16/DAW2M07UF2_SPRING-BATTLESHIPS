@@ -19,7 +19,7 @@
 </head>
 <body style="background: url('https://wallpaperaccess.com/full/1486772.jpg')" >
 <p id="codiPartida" th:text="${codiPartida}"></p>
-<form>
+<form method="post" action="/posarPosicions">
     <div class="form-row">
         <label for="usuario" class="sr-only">Jugador:</label>
         <input type="text" id="usuario" name="nomJugador" readonly class="form-control-plaintext" th:value="*{nomJugador}">

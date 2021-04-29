@@ -106,8 +106,8 @@ public class PartidaController {
 
             model.addAttribute("lerrors", resultat.getPosicionsErrorsJ1());
             model.addAttribute("lacerts", resultat.getPosicionsAcertadesJ1());
-            model.addAttribute("nomJugador", resultat.getPosicionsAcertadesJ1());
-
+            model.addAttribute("nomJugador", nomJugador2);
+            model.addAttribute("codiPartida", codiPartida);
             return "partida";
         }
     }
